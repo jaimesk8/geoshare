@@ -1,90 +1,149 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf8">
-  <title>Home Page</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel = "icon" href= "icons/pin.png" style="height: 5px;">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title >How far am i</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
     
-    .image {
-      width: 200px; /* Adjust the size as needed */
-      height: 200px;
-      margin-bottom: 20px;
-    }
+  <div class="container">
+    <div class="sub-container">
+      <div class="logo">
+        <img src="icons/pin.png" style="height: 50px;">
+      </div>
+      <div class="nav-menu" style="box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); ">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="page-divider">
+  <div class="wrapper">
     
-   
-    button {
-        padding: 10px 20px;
-        background-color: #e95703;
-        color: #fff;
-        font-size: 18px;
-        border-radius: 6px;
-        border: none;
-        cursor: pointer;
-        margin: 1%;
-        transition: background-color 0.3s ease;
-    }
+    <div class="left-column" >
+      <div id="slideshow-container" class="title-left-img" style="box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); ">
+        <div class="mySlides fade" style="height:100%;">
+          <img src="icons/sa.jpg" style="width:100%;height:100%;">
+        </div>
+        
+        <div class="mySlides fade"style="height:100%;" >
+          <img src="icons/logo.jpg" style="width:100%;height:100%;">
+        </div>
     
-    button:hover {
-        background-color: #f89705;
-    }   
-  
-    .carousel {
-      width: 400px;
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .carousel-inner {
-      width: 300%;
-      height: 100%;
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    
-    .carousel-slide {
-      width: 33.33%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-    }
-    
-    /* Customize the appearance of each slide */
-    .slide-1 {
-      background-color: #3498db;
-      color: #fff;
-    }
-    
-    .slide-2 {
-      background-color: #e74c3c;
-      color: #fff;
-    }
-    
-    .slide-3 {
-      background-color: #27ae60;
-      color: #fff;
-    }
+      </div>
+
+      <h3>Bridge of Connection: Fostering Meaningful Human Connections in a Digital Age</h3>
+      <p class="description-article">"Connection is a special bond we feel when we understand, trust, and care about someone. 
+        It makes us feel close and supported, like we belong together."</p><a style="color: black">Definition of "connection" by chatgpt </a>
+      <p class="author">a project by Jaime Marinho</p>
+      <br>
+    </div>
+    <div class="center-column" style="box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); ">
       
-  </style>
+      <div id="canter-column" style="margin-left:5px;">
+        <h3>Como usar:</h3>
+        <h3>1º <a>Ver o teu código: </a><button id="demo" type="submit" onclick="getLocation()" action="/loc">Ver código</button></h3>
   
-</head>
-<body>
-  <img class="image" src="logo.jpg" alt="Image">
-  <form action="index.html">
-  <button class="button">Encontra o teu amigo!</button>
-  </form>
+        <h3>2º<a>Partilha o teu codigo!</a><button id="partilha" type="submit">Partilhar</button></h3><br>
+    
+        <h3>3º<a>Introduz o código do teu amigo</a><button id="ask" type="submit" action="">Ask for location!</button></h3><br>
+     
+        <div>
+       <h3>My code -><div id="code" type="text" name="name" ></div></h3> 
+        </div>
+        <div>
+          <h3>Latitude -><div id="display" type="text" name="name"></div></div></h3>
+        
+        <div>
+          <h3>Longitude -><div id="display1"></div></h3>
+        </div></div>
+
+        <div id="data-output"></div>
+        <div id="data-output1"></div>
+        <div id="msg"></div> 
+        <h3>4º Iniciar buscar<button id="share" type="submit" action="">Iniciar buscar</button></h3>
+      </div>
+      
+      <div id="contentDiv" class="hidden" style="display: none;">
+        <input id="get" type="text" jaime placeholder="enter your friend code">
+        <button id="askFriend">Find my friend</button>
+      </div>
+    </div>
+  </div>
   
-</body>
+  <br>
+   <div id="floating-panel">
+    <button id="toggle"type="button" value="Toggle Street View" >Toggle View</button>
+  </div>
+  
+  <div id="map" style="box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);"></div>
+ 
+  <button class="goBtn">
+    <img src="icons/go.png" height="30px" width="30px" alt="img">
+  </button>
+      <script src="app.js"></script>
+      <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          slides[slideIndex-1].style.display = "block";  
+          setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+        </script>
+      <script async
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqfFxqcbv
+                    p_h1JIqX6kjVAJ5n-BxbqfcA&callback=initMap">
+      </script>
+      
+      <script>
+        var showButton = document.getElementById('ask');
+        var contentDiv= document.getElementById('contentDiv');
+        var inputField = document.getElementById('get');
+        var closeButton = document.getElementById('askFriend');
+        var share = document.getElementById('share');
+
+        share.addEventListener('click', function(){
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+          });
+        }); 
+
+
+        showButton.addEventListener('click', function() {
+          contentDiv.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', function() {
+          contentDiv.style.display = 'none';                          
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target !== showButton && event.target !== inputField) {
+              contentDiv.style.display = 'none';
+            }
+        });
+
+      </script>
+   
+  </body>
 </html>
