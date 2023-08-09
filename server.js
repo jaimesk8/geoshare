@@ -10,9 +10,9 @@ app.use(express.static('public'))
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "root",
-  database: "geoshare"
+  user: YOURUSERNAME,
+  password: YOURPASSWORD,
+  database: YOURDATABASENAME
 });
 
 app.post('/loc', (req, res) => {
@@ -55,9 +55,5 @@ function executaSQL(sqlQry, res){
   connection.query(sqlQry, (error, results, fields) => {
       if(error)
         res.json(error);
-      //else
-     //res.json(results);
-      //connection.end();
-      //console.log("Saved!");
   });
 }
