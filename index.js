@@ -1,4 +1,3 @@
-
 let map, infoWindow;
 var latitude = 0; 
 var longitude = 0;
@@ -21,168 +20,6 @@ function haversine_distance(mk1, mk2) {
 function initMap() {
 
       var id = "";
-
-      var styles = [
-        {
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.icon",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#ffffff"
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#dadada"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.line",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.station",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#c9c9c9"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        }
-      ];
-        //const options = {zoom: 15, scaleControl: true, center: center};
         map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 41.1555079, lng: -8.6279243 },
           zoom: 15,
@@ -191,22 +28,14 @@ function initMap() {
           mapId: "e9ec01ddb44aa407",
         });
         
-        
         map.setTilt(100);
       
-        
         infoWindow = new google.maps.InfoWindow();
 
       const locationButton = document.getElementById("share");
-      //button.setAttribute("id", "buttonGo");
 
-      //locationButton.textContent = "Onde estou?";
-     // locationButton.classList.add("custom-map-control-button");
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-      locationButton.addEventListener("click", () => {
-          // Try HTML5 geolocation.       
-
-          
+     // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      locationButton.addEventListener("click", () => {      
                 var longitude = document.getElementById('display1').textContent;
                 var latitude = document.getElementById('display').textContent; 
                 var long = parseFloat(longitude);
@@ -214,7 +43,7 @@ function initMap() {
                 
                 const randomString = 0;
                 
-                const pos = {
+                const posA = {
                   id: randomString,
                   lat: lats,
                   lng: long
@@ -226,11 +55,11 @@ function initMap() {
                 var Flat = parseFloat(cliLat);
                 var Flon = parseFloat(cliLon);
 
-                const frick = {lat: Flat, lng: Flon};
+                const posB = {lat: Flat, lng: Flon};
                 
-                // The markers for The Dakota and The Frick Collection
-                var mk1 = new google.maps.Marker({position: pos, map: map});
-                var mk2 = new google.maps.Marker({position: frick, map: map});
+                // The markers for PositionA and PositionB
+                var mk1 = new google.maps.Marker({position: posA, map: map});
+                var mk2 = new google.maps.Marker({position: posB, map: map});
 
                 document.getElementById("toggle").addEventListener("click", toggleStreetView);
                 
@@ -239,7 +68,6 @@ function initMap() {
                 document.getElementById('msg').innerHTML = "Distance between markers: " + distance.toFixed(2) + " mi.";
                 // Draw a line showing the straight distance between the markers
                // var line = new google.maps.Polyline({path: [pos, frick], map: map});
-
                 let directionsService = new google.maps.DirectionsService();
                 let directionsRenderer = new google.maps.DirectionsRenderer();
                 directionsRenderer.setMap(map); // Existing map object displays directions
@@ -249,7 +77,6 @@ function initMap() {
                     destination: frick,
                     travelMode: 'DRIVING'
                 }
-
                 directionsService.route(route,
                   function(response, status) { // anonymous function to capture directions
                     if (status !== 'OK') {
@@ -268,27 +95,20 @@ function initMap() {
                     }
                   });
                 
-                 
-                
                 infoWindow.setPosition(pos);
                 infoWindow.setContent("Estou aqui.");
                 infoWindow.open(map);
                 map.setCenter(pos);
                 
-                panorama = map.getStreetView(); // TODO fix type
-                 // panorama.setPosition(pos);
-                  
-                
-                  map.setStreetView(panorama);  
+                panorama = map.getStreetView(); 
+                // panorama.setPosition(pos);
+                map.setStreetView(panorama);  
         },
               () => {
                 handleLocationError(true, infoWindow, map.getCenter());
               }
-      );
-        
-
+      );   
 }
-
 
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
