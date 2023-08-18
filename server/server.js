@@ -10,9 +10,9 @@ app.use(express.static('public'))
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "root",
-  database: "geoshare"
+  user: YOURUSERNAME,
+  password: YOURPASS,
+  database: YOURDATABASENAME
 });
 
 app.post('/loc', (req, res) => {
